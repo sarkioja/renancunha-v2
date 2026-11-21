@@ -1,170 +1,131 @@
+/*
+  A README rendered as raw markdown.
+  Near-white or near-black ground, one grey for marks, system monospace 12/20,
+  one 480px column, top left, 40px in.
+*/
+
 :root {
-  --bg: #f4f1eb;
-  --card: #fbfaf7;
-  --text: #1a1a1a;
-  --line: rgba(0, 0, 0, 0.08);
-  --muted: rgba(0, 0, 0, 0.45);
-  --soft: rgba(0, 0, 0, 0.6);
-  --pill: rgba(0, 0, 0, 0.04);
-  --shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  color-scheme: light dark;
+  --gray: oklch(65% 0.01 286);
+  --bg: light-dark(#f7f7f8, #151516);
+  --fg: light-dark(
+    color-mix(in srgb, black 95%, var(--gray)),
+    color-mix(in srgb, white 80%, var(--gray))
+  );
+  --fg3: var(--gray);
+  --mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Monaco,
+    "Cascadia Mono", Consolas, "Liberation Mono", monospace;
 }
 
-* {
-  box-sizing: border-box;
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body), sans-serif;
+  background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: #ddd2bf;
-  color: var(--text);
+  background: #ffff00;
+  color: #000000;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
-.page-shell {
-  min-height: 100vh;
-  padding: 2.5rem 1rem;
-}
-
-.card {
-  max-width: 42rem;
-  margin: 0 auto;
-  border-radius: 28px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: var(--card);
-  box-shadow: var(--shadow);
-  padding: 2.5rem 2rem;
-}
-
-.content {
-  max-width: 32rem;
-  margin: 0 auto;
-}
-
-.site-name {
-  margin: 0;
-  font-family: var(--font-display), serif;
-  font-size: clamp(3rem, 7vw, 4.5rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
-}
-
-.intro {
-  margin: 1rem 0 0;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.role {
-  margin: 0.5rem 0 0;
-  font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.link-list {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
-  font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.55);
-}
-
-.inline-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: color 160ms ease, transform 160ms ease;
-}
-
-.inline-link:hover {
-  color: rgba(0, 0, 0, 0.9);
-  transform: translateY(-1px);
-}
-
-.divider {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 2.5rem 0;
-}
-
-.body-copy {
-  display: grid;
-  gap: 1.1rem;
-  font-size: 1rem;
-  line-height: 2;
-  color: rgba(0, 0, 0, 0.65);
-}
-
-.body-copy p {
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 20px;
+  padding: 40px;
   margin: 0;
 }
 
-.subtle-link {
-  color: rgba(0, 0, 0, 0.8);
-  text-underline-offset: 4px;
+@media (max-width: 480px) {
+  body {
+    padding: 24px 16px;
+  }
 }
 
-.subtle-link:hover {
-  text-decoration: underline;
+pre,
+code {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
-.section-label {
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   margin: 0;
-  font-size: 0.7rem;
+  max-width: 480px;
+}
+
+.header {
+  display: inline-block;
+  line-height: 18px;
+}
+
+.cursor {
+  animation: flash 1s infinite;
+}
+
+@keyframes flash {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}
+
+.mono-h1,
+.mono-h2 {
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  color: rgba(0, 0, 0, 0.35);
 }
 
-.stack-list {
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.mono-h3 {
+  font-weight: 700;
 }
 
-.stack-pill {
-  border-radius: 999px;
-  background: var(--pill);
-  padding: 0.4rem 0.8rem;
-  font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.6);
+.mono-h1::before {
+  content: "# ";
+  color: var(--fg3);
 }
 
-.footnote {
-  margin: 0;
-  font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.45);
+.mono-h2::before {
+  content: "## ";
+  color: var(--fg3);
 }
 
-@media (min-width: 768px) {
-  .page-shell {
-    padding: 3.5rem 1.5rem;
-  }
+.mono-h3::before {
+  content: "### ";
+  color: var(--fg3);
+}
 
-  .card {
-    padding: 3.5rem 3rem;
-  }
+.fg3 {
+  color: var(--fg3);
+}
 
-  .intro {
-    font-size: 1.2rem;
-  }
+.spaced {
+  display: inline-block;
+  margin-top: 80px;
 }

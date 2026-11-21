@@ -1,34 +1,33 @@
-import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-display",
-});
+const description =
+  "Renan Cunha, software engineer in Curitiba, Brazil. Web apps, APIs, cloud and AI research.";
 
 export const metadata: Metadata = {
   title: "Renan Cunha",
-  description: "Personal site of Renan Cunha — software engineer focused on web apps, APIs and cloud systems.",
+  description,
   metadataBase: new URL("https://renancunha.com"),
   openGraph: {
     title: "Renan Cunha",
-    description: "Software engineer building web apps, APIs and systems running in the cloud.",
+    description,
     url: "https://renancunha.com",
     siteName: "Renan Cunha",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Renan Cunha",
-    description: "Software engineer building web apps, APIs and systems running in the cloud.",
+    description,
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f7f8" },
+    { media: "(prefers-color-scheme: dark)", color: "#151516" },
+  ],
 };
 
 export default function RootLayout({
@@ -38,9 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${cormorant.variable}`}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

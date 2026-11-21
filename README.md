@@ -1,13 +1,13 @@
 # renancunha.com
 
-Personal site built with Next.js App Router.
+Personal site built with Next.js App Router. It is styled as a plain text
+README: system monospace, one narrow column, markdown marks left visible.
 
 ## Stack
 
 - Next.js
 - TypeScript
-- next/font/google
-- Plain CSS
+- Plain CSS, no web fonts
 - Vercel-ready
 
 ## Run locally
@@ -19,15 +19,38 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Editing content
+
+Each language has its own folder under `content/`, one file per section:
+
+```
+content/
+  index.ts          loader (getContent)
+  en/
+    site.json       header, footer and section order
+    about.md
+    now.md
+    previously.md
+    how-i-work.md
+    stack.md
+    off-the-clock.md
+    contact.md
+```
+
+To add or reorder a section, create the `.md` file and list it in
+`site.json`. A new language is a new folder with the same files, plus its
+code in `locales` in `content/index.ts`.
+
+Supported marks in the `.md` files (rendered by `app/readme.tsx`):
+
+- `# Heading`, `## Section`, `### Entry`
+- `> line` for a grey secondary line (dates, location)
+- `[label](url)` for links
+
+Line breaks are kept as written.
+
 ## Deploy to Vercel
 
-1. Push this folder to a GitHub repository.
-2. Import the repository in Vercel.
-3. Vercel will detect Next.js automatically.
-4. Add the custom domain `renancunha.com` in the Vercel project settings.
-5. Update your DNS records where your domain is managed.
-
-## Notes
-
-- The site uses `Inter` for body text and `Cormorant Garamond` for the display name.
-- The design is intentionally minimal, centered, and easy to maintain.
+1. Import the repository in Vercel.
+2. Vercel detects Next.js automatically.
+3. Add the custom domain `renancunha.com` in the project settings.

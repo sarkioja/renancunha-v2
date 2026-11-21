@@ -1,0 +1,14 @@
+{
+  "name": "RENAN CUNHA",
+  "subtitle": "PERSONAL WEBSITE",
+  "footer": "~*~ © Renan Cunha ~*~",
+  "sections": [
+    "about",
+    "now",
+    "previously",
+    "how-i-work",
+    "stack",
+    "off-the-clock",
+    "contact"
+  ]
+}
